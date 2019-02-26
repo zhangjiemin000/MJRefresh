@@ -30,11 +30,16 @@
 
 #pragma mark - header
 static const char MJRefreshHeaderKey = '\0';
+/**
+ * set mj_header
+ * @param mj_header
+ */
 - (void)setMj_header:(MJRefreshHeader *)mj_header
 {
     if (mj_header != self.mj_header) {
         // 删除旧的，添加新的
         [self.mj_header removeFromSuperview];
+        // uiscrollview insert header
         [self insertSubview:mj_header atIndex:0];
         
         // 存储新的
@@ -50,6 +55,10 @@ static const char MJRefreshHeaderKey = '\0';
 
 #pragma mark - footer
 static const char MJRefreshFooterKey = '\0';
+/**
+ * set mj footer
+ * @param mj_footer
+ */
 - (void)setMj_footer:(MJRefreshFooter *)mj_footer
 {
     if (mj_footer != self.mj_footer) {
@@ -90,6 +99,10 @@ static const char MJRefreshFooterKey = '\0';
 }
 
 #pragma mark - other
+/**
+ * get all rows
+ * @return
+ */
 - (NSInteger)mj_totalDataCount
 {
     NSInteger totalCount = 0;
@@ -110,6 +123,10 @@ static const char MJRefreshFooterKey = '\0';
 }
 
 static const char MJRefreshReloadDataBlockKey = '\0';
+/**
+ * called reload data
+ * @param mj_reloadDataBlock
+ */
 - (void)setMj_reloadDataBlock:(void (^)(NSInteger))mj_reloadDataBlock
 {
     [self willChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
@@ -129,7 +146,9 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 @end
 
 @implementation UITableView (MJRefresh)
-
+/**
+ * 替换方法的reloadData 和 mj_reloadData
+ */
 + (void)load
 {
     [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];

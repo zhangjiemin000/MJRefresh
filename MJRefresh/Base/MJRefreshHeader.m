@@ -58,6 +58,7 @@
         if (self.window == nil) return;
         
         // sectionheader停留解决
+        // 这里一直在计算ScrollView的顶部原点。 其实就是保证顶点的位置和系统回到最终状态的位置，相差一个mj_h
         CGFloat insetT = - self.scrollView.mj_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.mj_offsetY : _scrollViewOriginalInset.top;
         insetT = insetT > self.mj_h + _scrollViewOriginalInset.top ? self.mj_h + _scrollViewOriginalInset.top : insetT;
         self.scrollView.mj_insetT = insetT;
@@ -104,8 +105,9 @@
     MJRefreshCheckState
     
     // 根据状态做事情
+    // 如果状态被置为Idle
     if (state == MJRefreshStateIdle) {
-        if (oldState != MJRefreshStateRefreshing) return;
+        if (oldState != MJRefreshStateRefreshing) return;  //如果上一个状态不是Refreshing
         
         // 保存刷新时间
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:self.lastUpdatedTimeKey];
@@ -114,6 +116,7 @@
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
             self.scrollView.mj_insetT += self.insetTDelta;
+            // 改变insetTop，ScrollView 会自动回归到insetT的位置
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
@@ -132,7 +135,7 @@
                     // 增加滚动区域top
                     self.scrollView.mj_insetT = top;
                     // 设置滚动位置
-                    CGPoint offset = self.scrollView.contentOffset;
+                    CGPoint offset = self.scrollView.contentOffset; // contentOffset 是当前的位置
                     offset.y = -top;
                     [self.scrollView setContentOffset:offset animated:NO];
                 }

@@ -99,7 +99,13 @@
     [self.pan removeObserver:self forKeyPath:MJRefreshKeyPathPanState];
     self.pan = nil;
 }
-
+/**
+ * KVO回调， contentOffset、ContentSize、PanState
+ * @param keyPath
+ * @param object
+ * @param change
+ * @param context
+ */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     // 遇到这些情况就直接返回
@@ -113,8 +119,10 @@
     // 看不见
     if (self.hidden) return;
     if ([keyPath isEqualToString:MJRefreshKeyPathContentOffset]) {
+        // contentOffset 变化时
         [self scrollViewContentOffsetDidChange:change];
     } else if ([keyPath isEqualToString:MJRefreshKeyPathPanState]) {
+        //  当手势改变时
         [self scrollViewPanStateDidChange:change];
     }
 }

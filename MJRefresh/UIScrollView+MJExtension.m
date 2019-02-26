@@ -34,7 +34,10 @@ static BOOL respondsToAdjustedContentInset_;
 #endif
     return self.contentInset;
 }
-
+/**
+ * inset top
+ * @param mj_insetT
+ */
 - (void)setMj_insetT:(CGFloat)mj_insetT
 {
     UIEdgeInsets inset = self.contentInset;
@@ -51,7 +54,10 @@ static BOOL respondsToAdjustedContentInset_;
 {
     return self.mj_inset.top;
 }
-
+/**
+ * inset bottom
+ * @param mj_insetB
+ */
 - (void)setMj_insetB:(CGFloat)mj_insetB
 {
     UIEdgeInsets inset = self.contentInset;
@@ -69,6 +75,10 @@ static BOOL respondsToAdjustedContentInset_;
     return self.mj_inset.bottom;
 }
 
+/**
+ * inset Left
+ * @param mj_insetL
+ */
 - (void)setMj_insetL:(CGFloat)mj_insetL
 {
     UIEdgeInsets inset = self.contentInset;
@@ -86,6 +96,10 @@ static BOOL respondsToAdjustedContentInset_;
     return self.mj_inset.left;
 }
 
+/**
+ * inset right
+ * @param mj_insetR
+ */
 - (void)setMj_insetR:(CGFloat)mj_insetR
 {
     UIEdgeInsets inset = self.contentInset;
@@ -102,7 +116,10 @@ static BOOL respondsToAdjustedContentInset_;
 {
     return self.mj_inset.right;
 }
-
+/**
+ * content offset x
+ * @param mj_offsetX
+ */
 - (void)setMj_offsetX:(CGFloat)mj_offsetX
 {
     CGPoint offset = self.contentOffset;
@@ -115,6 +132,10 @@ static BOOL respondsToAdjustedContentInset_;
     return self.contentOffset.x;
 }
 
+/**
+ * content offset y
+ * @param mj_offsetY
+ */
 - (void)setMj_offsetY:(CGFloat)mj_offsetY
 {
     CGPoint offset = self.contentOffset;
@@ -127,6 +148,10 @@ static BOOL respondsToAdjustedContentInset_;
     return self.contentOffset.y;
 }
 
+/**
+ *  set content width
+ * @param mj_contentW
+ */
 - (void)setMj_contentW:(CGFloat)mj_contentW
 {
     CGSize size = self.contentSize;
@@ -139,6 +164,10 @@ static BOOL respondsToAdjustedContentInset_;
     return self.contentSize.width;
 }
 
+/**
+ * set content height
+ * @param mj_contentH
+ */
 - (void)setMj_contentH:(CGFloat)mj_contentH
 {
     CGSize size = self.contentSize;
